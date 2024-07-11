@@ -52,4 +52,13 @@
 10. Modify csparc_login.ini to match your active CryoSPARC instance from which micrographs will be imported into Vesicle Picker and into which particle locations will be exported.
 
 ## Usage ##
+
+Before processing your own dataset, we recommend working through the introductory Jupyter notebook [`tests/find_vesicles.ipynb`](tests/find_vesicles.ipynb). This notebook describes how the program imports data residing in cryosparc and describes each step of the processing pipeline.
+
+To process your own dataset, follow the steps below:
+
+	### CryoSPARC Actions ###
+
+ 	First...
+
 ## Reference ##
