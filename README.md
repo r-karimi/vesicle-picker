@@ -24,8 +24,13 @@
    		python --version
    		```
 	- Browse the [PyTorch wheels](https://download.pytorch.org/whl/torch/) to find the appropriate versions of PyTorch, PyTorch vision, and PyTorch audio for your installed versions of CUDA and Python (e.g. `cu118` for CUDA 11.8 and `cp39` for Python 3.9).
+	- Modify `poe install-pytorch` in `pyproject.toml`:
+	```
+ 	# For Python 3.9.X and CUDA 11.8
+ 	install-pytorch = "pip install torch==2.1.1+cu118 torchvision==0.16.1+cu118 torchaudio==2.1.1+cu118 -f https://download.pytorch.org/whl/torch_stable.html"
+ 	```
  
-- Install `vesicle-picker` package and dependencies:
+- Install `vesicle-picker` and dependencies:
 	```
 	pip install .
 	poe install-pytorch
