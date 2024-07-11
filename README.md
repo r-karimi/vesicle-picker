@@ -20,6 +20,15 @@
  	```
 6. Edit the [`pyproject.toml`](pyproject.toml) file in the base directory to install the correction version of PyTorch, PyTorch vision, and PyTorch audio for your machine. These instructions differ based on whether you are installing Pytorch for CPU or GPU usage.
 
+	### CPU Installation ###
+	- Visit the (Pytorch)[https://pytorch.org/get-started/locally/] installation page and select the appropriate options, ensuring that Pip is selected as the package manager and CPU is selected as the compute platform. Note the given install command.
+ 
+	- Modify `poe install-pytorch` in `pyproject.toml` with this install command:
+		```
+ 		# For CPU
+ 		install-pytorch = "pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu"
+ 		```
+
 	### GPU Installation ###
 	- Note your version of CUDA and Python by running:
 		```
@@ -28,15 +37,16 @@
 		```
 	- Browse the [PyTorch wheels](https://download.pytorch.org/whl/torch/) to find the appropriate versions of PyTorch, PyTorch vision, and PyTorch audio for your installed versions of CUDA and Python (e.g. `cu118` for CUDA 11.8 and `cp39` for Python 3.9).
  
-	- Modify `poe install-pytorch` in `pyproject.toml`:
+	- Modify `poe install-pytorch` in `pyproject.toml` to match these versions:
 		```
  		# For Python 3.9.X and CUDA 11.8
  		install-pytorch = "pip install torch==2.1.1+cu118 torchvision==0.16.1+cu118 torchaudio==2.1.1+cu118 -f https://download.pytorch.org/whl/torch_stable.html"
  		```
-7. Install `vesicle-picker` and dependencies:
+  
+8. Install `vesicle-picker` and dependencies:
 	```
 	pip install .
 	poe install-pytorch
  	```
-8. Download the Segment Anything [model weights](https://github.com/facebookresearch/segment-anything#model-checkpoints) and move them into the `vesicle-picker` directory. We recommend trying with the ViT-L model weights first.
-9. Modify csparc_login.ini to match your active CryoSPARC instance
+9. Download the Segment Anything [model weights](https://github.com/facebookresearch/segment-anything#model-checkpoints) and move them into the `vesicle-picker` directory. We recommend trying with the ViT-L model weights first.
+10. Modify csparc_login.ini to match your active CryoSPARC instance...
