@@ -1,4 +1,4 @@
-![banner](docs/vesicle_picker_banner.tiff?raw=true)
+![banner](docs/vesicle_picker_banner.png)
 
 # Installation Instructions
 - Clone this repository: `git clone https://github.com/r-karimi/vesicle-picker.git`
