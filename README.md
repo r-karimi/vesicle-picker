@@ -3,10 +3,13 @@
 ## Installation ##
 - Ensure conda is installed on your machine. If it is not, [install conda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html).
 - Clone this repository:
-  ```
-  git clone https://github.com/r-karimi/vesicle-picker.git
-  ```
-- Enter this repository: `cd vesicle_picker`
+  	```
+  	git clone https://github.com/r-karimi/vesicle-picker.git
+  	```
+- Enter this repository:
+	```
+	cd vesicle_picker
+ 	```
 - Create a clean python virtual environment with venv or conda, tested with Python version 3.9 but likely compatible with Python 3.X.
 	- With venv: `python3 -m venv .` and `source venv/bin/activate`.
 	- With conda: `conda create -n vesicle-picker`, `conda activate vesicle-picker`, `conda install python=3.9`, and `conda install pip`.	
