@@ -22,10 +22,10 @@
 
 	### GPU Installation ###
 	- Note your version of CUDA and Python by running:
-	```
-	nvcc --version
-	python --version
-	```
+		```
+		nvcc --version
+		python --version
+		```
 	- Browse the [PyTorch wheels](https://download.pytorch.org/whl/torch/) to find the appropriate versions of PyTorch, PyTorch vision, and PyTorch audio for your installed versions of CUDA and Python (e.g. `cu118` for CUDA 11.8 and `cp39` for Python 3.9).
  
 	- Modify `poe install-pytorch` in `pyproject.toml`:
