@@ -18,7 +18,7 @@
  	conda activate vesicle-picker
  	conda install pip
  	```
-- Edit the [`pyproject.toml`](pyproject.toml) file in the base directory to install the correction version of PyTorch, PyTorch vision, and PyTorch audio for your machine.
+- Edit the [`pyproject.toml`](pyproject.toml) file in the base directory to install the correction version of PyTorch, PyTorch vision, and PyTorch audio for your machine. These instructions differ based on whether you are installing Pytorch for CPU or GPU usage.
 
   ### GPU Installation ###
   
