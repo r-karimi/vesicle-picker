@@ -4,13 +4,13 @@
 Ensure [anaconda](https://www.anaconda.com/download) or [miniconda](https://docs.anaconda.com/miniconda/) is installed on your machine.
 If you wish to run the Segment Anything model on GPU, ensure [CUDA](https://docs.nvidia.com/cuda/) is installed on your machine.
 Clone this repository:
-  	```
-  	git clone https://github.com/r-karimi/vesicle-picker.git
-  	```
+```
+git clone https://github.com/r-karimi/vesicle-picker.git
+```
 Enter this repository:
-	```
-	cd vesicle_picker
- 	```
+```
+cd vesicle_picker
+```
 Create a clean conda virtual environment.
 	```
 	conda create -n vesicle-picker
