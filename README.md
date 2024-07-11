@@ -57,8 +57,8 @@ Before processing your own dataset, we recommend working through the introductor
 
 To process your own dataset, follow the steps below:
 
-	### CryoSPARC Actions ###
+### CryoSPARC Actions ###
 
- 	First...
+1. 
 
 ## Reference ##
