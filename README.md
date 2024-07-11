@@ -1,6 +1,7 @@
 ![banner](docs/vesicle_picker_banner_withtext.png)
 
 ## Installation ##
+---
 - Ensure [Anaconda](https://www.anaconda.com/download) or [Miniconda](https://docs.anaconda.com/miniconda/) is installed on your machine.  
 - If you wish to run the Segment Anything model on GPU, ensure [CUDA](https://docs.nvidia.com/cuda/) is installed on your machine. CUDA is not necessary if you wish to run the model on your machine's CPU. 
 - Clone this repository:  
