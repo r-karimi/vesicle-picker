@@ -19,7 +19,8 @@
  	```
 - Edit the [`pyproject.toml`](pyproject.toml) file in the base directory to install the correction version of PyTorch, PyTorch vision, and PyTorch audio for your machine.
 
-  ### CPU Installation ### ---
+  ### CPU Installation ###
+  ---
   
 	- Note your version of CUDA and Python by running:
  		```
