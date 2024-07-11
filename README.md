@@ -18,7 +18,11 @@
  	conda install pip
  	```
 - Edit the [`pyproject.toml`](pyproject.toml) file in the base directory to install the correction version of PyTorch, PyTorch vision, and PyTorch audio for your machine.
-	- Note your version of CUDA by running `nvcc --version` and your version of Python by running `python --version`.
+	- Note your version of CUDA and Python by running:
+ 		```
+   		nvcc --version
+   		python --version
+   		```
 	- Browse the [PyTorch wheels](https://download.pytorch.org/whl/torch/) to find the appropriate versions of PyTorch, PyTorch vision, and PyTorch audio for your installed versions of CUDA and Python (e.g. `cu118` for CUDA 11.8 and `cp39` for Python 3.9).
  
 - Install `vesicle-picker` package and dependencies:
