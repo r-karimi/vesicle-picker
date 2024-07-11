@@ -22,7 +22,7 @@
 
   ### GPU Installation ###
   
-	- Note your version of CUDA and Python by running:
+	Note your version of CUDA and Python by running:
  		```
    		nvcc --version
    		python --version
