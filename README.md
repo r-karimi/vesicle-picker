@@ -57,8 +57,8 @@ Before processing your own dataset, we recommend working through the introductor
 
 To process your own dataset, follow the steps below:
 
-### CryoSPARC Actions ###
+### In CryoSPARC: ###
 
-1. 
+1. [Import](https://guide.cryosparc.com/processing-data/all-job-types-in-cryosparc/import/job-import-movies) your movies, then perform [patch motion correction](https://guide.cryosparc.com/processing-data/all-job-types-in-cryosparc/motion-correction/job-patch-motion-correction) and [patch CTF estimation](https://guide.cryosparc.com/processing-data/all-job-types-in-cryosparc/ctf-estimation/job-patch-ctf-estimation).
 
 ## Reference ##
