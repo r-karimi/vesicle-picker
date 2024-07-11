@@ -1,7 +1,8 @@
 ![banner](docs/vesicle_picker_banner_withtext.png)
 
 ## Installation ##
-- Ensure conda is installed on your machine. If it is not, [install conda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html).
+- Ensure [anaconda](https://www.anaconda.com/download) or [miniconda](https://docs.anaconda.com/miniconda/) is installed on your machine.
+- If you wish to run the Segment Anything model on GPU, ensure [CUDA](https://docs.nvidia.com/cuda/) is installed on your machine.
 - Clone this repository:
   	```
   	git clone https://github.com/r-karimi/vesicle-picker.git
@@ -10,10 +11,16 @@
 	```
 	cd vesicle_picker
  	```
-- Create a clean python virtual environment with venv or conda, tested with Python version 3.9 but likely compatible with Python 3.X.
-	- With venv: `python3 -m venv .` and `source venv/bin/activate`.
-	- With conda: `conda create -n vesicle-picker`, `conda activate vesicle-picker`, `conda install python=3.9`, and `conda install pip`.	
-- Edit the `pyproject.toml` file to install the correction version of PyTorch, PyTorch vision, and PyTorch audio for your hardware, matching both your version of CUDA (e.g. `cu118` for CUDA 11.8) and Python version (e.g. `cp39` for Python 3.9). Available PyTorch wheels are listed [here](https://download.pytorch.org/whl/torch/). GPU acceleration is highly recommended when possible.
+- Create a clean conda virtual environment.
+	```
+	conda create -n vesicle-picker
+ 	conda activate vesicle-picker
+ 	conda install pip
+ 	```
+- Edit the [`pyproject.toml`](pyproject.toml) file in the base directory to install the correction version of PyTorch, PyTorch vision, and PyTorch audio for your machine.
+	- Note your version of CUDA by running `nvcc --version` and your version of Python by running `python --version`.
+ 	- Browse the [PyTorch wheels](https://download.pytorch.org/whl/torch/) to find the appropriate versions of PyTorch, PyTorch vision, and PyTorch audio for your installed versions of CUDA and Python (e.g. `cu118` for CUDA 11.8 and `cp39` for Python 3.9).
+ 
 - Install `vesicle-picker` package and dependencies with:
 	- `pip install .`
 	- `poe install-pytorch`
