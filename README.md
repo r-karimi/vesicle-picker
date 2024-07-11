@@ -21,13 +21,13 @@
 6. Edit the [`pyproject.toml`](pyproject.toml) file in the base directory to install the correction version of PyTorch, PyTorch vision, and PyTorch audio for your machine. These instructions differ based on whether you are installing Pytorch for CPU or GPU usage.
 
   ### GPU Installation ###
-  
-	Note your version of CUDA and Python by running:
- 		```
-   		nvcc --version
-   		python --version
-   		```
+- Note your version of CUDA and Python by running:
+	```
+	nvcc --version
+	python --version
+	```
 	- Browse the [PyTorch wheels](https://download.pytorch.org/whl/torch/) to find the appropriate versions of PyTorch, PyTorch vision, and PyTorch audio for your installed versions of CUDA and Python (e.g. `cu118` for CUDA 11.8 and `cp39` for Python 3.9).
+ 
 	- Modify `poe install-pytorch` in `pyproject.toml`:
 		```
  		# For Python 3.9.X and CUDA 11.8
