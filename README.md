@@ -65,7 +65,7 @@ To process your own dataset, follow the steps below:
 
 ### In Vesicle Picker: ###
 
-4. d
+4. Modify the 
 5.  
 
 ## Reference ##
