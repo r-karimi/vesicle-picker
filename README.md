@@ -50,3 +50,6 @@
  	```
 9. Download the Segment Anything [model weights](https://github.com/facebookresearch/segment-anything#model-checkpoints) and place them in the `vesicle-picker` repository. We recommend trying with the ViT-L model weights first.
 10. Modify csparc_login.ini to match your active CryoSPARC instance from which micrographs will be imported into Vesicle Picker and into which particle locations will be exported.
+
+## Usage ##
+## Reference ##
