@@ -2,7 +2,7 @@
 
 ## Installation ##
 - Ensure [Anaconda](https://www.anaconda.com/download) or [Miniconda](https://docs.anaconda.com/miniconda/) is installed on your machine.  
-- If you wish to run the Segment Anything model on GPU, ensure [CUDA](https://docs.nvidia.com/cuda/) is installed on your machine.  
+- If you wish to run the Segment Anything model on GPU, ensure [CUDA](https://docs.nvidia.com/cuda/) is installed on your machine. CUDA is not necessary if you wish to run the model on your machine's CPU. 
 - Clone this repository:  
 	```
 	git clone https://github.com/r-karimi/vesicle-picker.git
@@ -19,7 +19,7 @@
  	```
 - Edit the [`pyproject.toml`](pyproject.toml) file in the base directory to install the correction version of PyTorch, PyTorch vision, and PyTorch audio for your machine.
 
-  ### CPU Installation ###
+  ### CPU Installation ### ---
   
 	- Note your version of CUDA and Python by running:
  		```
