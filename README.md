@@ -1,4 +1,4 @@
-![banner](docs/vesicle_picker_banner_withtext.png)
+![Vesicle Picker banner.png](docs/vesicle_picker_banner_withtext.png)
 
 ## Installation ##
 
