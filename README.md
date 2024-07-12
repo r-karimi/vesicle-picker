@@ -73,7 +73,7 @@ To process your own dataset, follow the steps below:
  	- $r_{dilation}$ or $r_{erosion}$ for particle picks offset from the membrane edge.
 	- Box size to control the density of the picks.	 
 
-There are a variety of other postprocessing filters that can be applied to your data as well. These filters are commented out in [`parameters/filter_vesicles.ini`](parameters/filter_vesicles.ini) by default. More information about the various postprocessing methods implemented in this library can be found in [`vesicle_picker/postprocessing.py`](vesicle_picker/postprocessing.py).
+	There are a variety of other postprocessing filters that can be applied to your data as well. These filters are commented out in [`parameters/filter_vesicles.ini`](parameters/filter_vesicles.ini) by default. More information about the various postprocessing methods implemented in this library can be found in [`vesicle_picker/postprocessing.py`](vesicle_picker/postprocessing.py).
 
 5. Find vesicles by modifying the [`find_vesicles.ini`](parameters/find_vesicles.ini) parameter file with your desired parameters, ensuring to fill in the correct CryoSPARC information. Also make sure to fill in your CryoSPARC login information, using [`csparc_login.ini`](csparc_login.ini) as a template. Finally, indicate an appropriate output directory for the detected vesicles. These will be stored in Python `.pkl` files. We have pre-filled this parameter file with a reasonable set of starting parameters.
 
