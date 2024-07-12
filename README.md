@@ -70,15 +70,32 @@ To process your own dataset, follow the steps below:
 	- $\sigma_{space}$, $\sigma_{colour}$, and $d$ for the bilateral filter.
 	- $roundness_{min}$ for the roundness filter.
 	- $Area_{min}$ and $Area_{max}$ for the area filter.
+ 	- $r_{dilation}$ or $r_{erosion}$ for particle picks offset from the membrane edge.
+	- Box size to control the density of the picks.	 
 
 There are a variety of other postprocessing filters that can be applied to your data as well. These filters are commented out in [`parameters/filter_vesicles.ini`](parameters/filter_vesicles.ini) by default. More information about the various postprocessing methods implemented in this library can be found in [`vesicle_picker/postprocessing.py`](vesicle_picker/postprocessing.py).
 
-5. Find vesicles by modifying the [`find_vesicles.ini`](parameters/find_vesicles.ini) parameter file with your desired parameters, ensuring to fill in the correct CryoSPARC information. Also make sure to fill in your CryoSPARC login information, using [`csparc_login.ini`](csparc_login.ini) as a template. Finally, indicate an appropriate output directory for the detected vesicles. These will be stored in Python `.pkl` files.
+5. Find vesicles by modifying the [`find_vesicles.ini`](parameters/find_vesicles.ini) parameter file with your desired parameters, ensuring to fill in the correct CryoSPARC information. Also make sure to fill in your CryoSPARC login information, using [`csparc_login.ini`](csparc_login.ini) as a template. Finally, indicate an appropriate output directory for the detected vesicles. These will be stored in Python `.pkl` files. We have pre-filled this parameter file with a reasonable set of starting parameters.
 
-	When you're ready, run the [`find_vesicles.py'](find_vesicles.py) script. The script takes a file path to the parameters file as its only argument:
+	When you're ready, run the [`find_vesicles.py`](find_vesicles.py) script. The script takes a file path to the parameters file as its only argument:
 
 		```
 		python find_vesicles.py parameters/find_vesicles.ini
  		```
+6. Filter the found vesicles by modifying the [`filter_vesicles.ini`](parameters/filter_vesicles.ini) parameter file, uncommenting the types of filters that you want to use and setting their minimum and maximum values. **Ensure to set the input directory for this script as the output directory of `find_vesicles.py`.** Again, we have pre-filled this parameter file with a reasonable set of starting parameters.
+   
+   	When you're ready, run [`filter_vesicles.py`](filter_vesicles.py):
+   
+		```
+		python filter_vesicles.py parameters/filter_vesicles.ini
+ 		```
+7. Generate particle picks by modifying the [`generate_picks.ini`](parameters/generate_picks.ini) parameter file. Set the workspace into which the vesicle picks will be exported. Set the dilation or erosion radius if desired, and set box size parameter to control the density of picks. We recommend picking with a high density and removing duplicate particles later in CryoSPARC. **Ensure to set the input directory for this script as the output directory of `filter_vesicles.py`.**
 
+   	Run [`filter_vesicles.py`](filter_vesicles.py):
+		```
+		python generate_picks.py parameters/generate_picks.ini
+ 		```
+### In CryoSPARC: ###
+
+8. 
 ## Reference ##
