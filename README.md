@@ -75,10 +75,10 @@ There are a variety of other postprocessing filters that can be applied to your 
 
 5. Find vesicles by modifying the [`find_vesicles.ini`](parameters/find_vesicles.ini) parameter file with your desired parameters, ensuring to fill in the correct CryoSPARC information. Also make sure to fill in your CryoSPARC login information, using [`csparc_login.ini`](csparc_login.ini) as a template. Finally, indicate an appropriate output directory for the detected vesicles. These will be stored in Python `.pkl` files.
 
-When you're ready, run the [`find_vesicles.py'](find_vesicles.py) script. The script takes a file path to the parameters file as its only argument:
+	When you're ready, run the [`find_vesicles.py'](find_vesicles.py) script. The script takes a file path to the parameters file as its only argument:
 
-	```
-	python find_vesicles.py parameters/find_vesicles.ini
- 	```
+		```
+		python find_vesicles.py parameters/find_vesicles.ini
+ 		```
 
 ## Reference ##
