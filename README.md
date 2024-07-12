@@ -23,9 +23,9 @@
 	### CPU Installation ###
 	- Visit the [PyTorch](https://pytorch.org/get-started/locally/) installation page and select the appropriate options, ensuring that Pip is selected as the package manager and CPU is selected as the compute platform. Note the given install command.
  
-	- Modify `install-pytorch` in `pyproject.toml` with this install command:
+	- Modify `install-pytorch` in `pyproject.toml` with the install command noted above:
 		```
- 		# For CPU
+ 		# Example: CPU
  		install-pytorch = "pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu"
  		```
 
@@ -39,7 +39,7 @@
  
 	- Modify the `install-pytorch` command in `pyproject.toml` to match these versions:
 		```
- 		# For Python 3.9.X and CUDA 11.8
+ 		# Example: Python 3.9.X and CUDA 11.8
  		install-pytorch = "pip install torch==2.1.1+cu118 torchvision==0.16.1+cu118 torchaudio==2.1.1+cu118 -f https://download.pytorch.org/whl/torch_stable.html"
  		```
   
