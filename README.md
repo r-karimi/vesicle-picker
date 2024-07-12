@@ -107,3 +107,5 @@ To process your own dataset, follow the steps below:
 10. Proceed with downstream analysis in CryoSPARC, such as [2D classification](https://guide.cryosparc.com/processing-data/all-job-types-in-cryosparc/particle-curation/job-2d-classification) and [*Ab initio* reconstruction](https://guide.cryosparc.com/processing-data/all-job-types-in-cryosparc/3d-reconstruction/job-ab-initio-reconstruction).
 
 ## Reference ##
+
+A citation will be added shortly for a preprint on BioRxiv.
