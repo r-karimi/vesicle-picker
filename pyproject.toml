@@ -15,11 +15,9 @@ segment-anything = {git = "https://github.com/facebookresearch/segment-anything.
 scipy = "^1.11.4"
 matplotlib = "^3.8.2"
 configparser = "^6.0.0"
-seaborn = "^0.13.0"
 pandas = "^2.1.4"
 tqdm = "^4.66.1"
 jupyter = "^1.0.0"
-scikit-image = "^0.24.0"
 primefac = "^2.0.12"
 
 [tool.poe.tasks] # Change the line below to meet your specific environment. Currently configured for CUDA 11.8
