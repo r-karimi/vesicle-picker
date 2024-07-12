@@ -37,7 +37,7 @@
 		```
 	- Browse the [PyTorch wheels](https://download.pytorch.org/whl/torch/) to find the appropriate versions of PyTorch, PyTorch vision, and PyTorch audio for your installed versions of CUDA and Python (e.g. `cu118` for CUDA 11.8 and `cp39` for Python 3.9).
  
-	- Modify `install-pytorch` in `pyproject.toml` to match these versions:
+	- Modify the `install-pytorch` command in `pyproject.toml` to match these versions:
 		```
  		# For Python 3.9.X and CUDA 11.8
  		install-pytorch = "pip install torch==2.1.1+cu118 torchvision==0.16.1+cu118 torchaudio==2.1.1+cu118 -f https://download.pytorch.org/whl/torch_stable.html"
@@ -53,7 +53,7 @@
 
 ## Usage ##
 
-Before processing your own dataset, we recommend working through the introductory Jupyter notebook [`tests/find_vesicles.ipynb`](tests/find_vesicles.ipynb). This notebook describes how the program imports data residing in cryosparc and describes each step of the processing pipeline.
+Before processing your own dataset, we recommend working through the introductory Jupyter notebook [`find_vesicles.ipynb`](tests/find_vesicles.ipynb). This notebook describes how the program imports data residing in cryosparc and describes each step of the processing pipeline.
 
 To process your own dataset, follow the steps below:
 
@@ -65,7 +65,9 @@ To process your own dataset, follow the steps below:
 
 ### In Vesicle Picker: ###
 
-4. Modify the 
-5.  
+4. Find the optimal mask pre-processing and postprocessing for your data by importing a test micrograph using the [`find_vesicles.ipynb`](tests/find_vesicles.ipynb) Jupyter notebook. The parameters that need to be set by the user are as follows:
+	- $\sigma_{space}$, $\sigma_{colour}$, and $d$ for the bilateral filter
+	-
+6.  
 
 ## Reference ##
