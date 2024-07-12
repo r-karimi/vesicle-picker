@@ -110,7 +110,7 @@ To process your own dataset, follow the steps below:
 
 ## Tips ##
 
-- We recommend experimenting with different model architectures and downsampling factors to find a good trade-off between accuracy and speed when processing a full dataset. We have found that good recall when finding vesicles is usually unncessary for obtaining a structure. A small set of high-quality vesicles are usually more informative than vesicles mixed in with junk, so don't be afraid of stringently filtering your vesicles.
+- We recommend experimenting with different model architectures and downsampling factors to find a good trade-off between accuracy and speed when processing a full dataset. We have found that perfect recall when finding vesicles is usually unnecessary for obtaining a structure. A small set of high-quality vesicles are usually more informative than vesicles mixed in with junk, so don't be afraid of stringently filtering your vesicles.
 
 - If you're able to generate good 2D classes of a membrane protein complex with Vesicle Picker, these particles can be used for template matching and training a Topaz model to obtain a larger and more well-centered particle stack for subsequent 3D reconstruction and refinement.
 
