@@ -57,13 +57,13 @@ Before processing your own dataset, we recommend working through the introductor
 
 To process your own dataset, follow the steps below:
 
-### In CryoSPARC: ###
+### CryoSPARC (Part 1) ###
 
 1. [Import](https://guide.cryosparc.com/processing-data/all-job-types-in-cryosparc/import/job-import-movies) your movies, then perform [patch motion correction](https://guide.cryosparc.com/processing-data/all-job-types-in-cryosparc/motion-correction/job-patch-motion-correction) and [patch CTF estimation](https://guide.cryosparc.com/processing-data/all-job-types-in-cryosparc/ctf-estimation/job-patch-ctf-estimation).
 2. [Curate](https://guide.cryosparc.com/processing-data/all-job-types-in-cryosparc/exposure-curation/interactive-job-manually-curate-exposures) your motion-corrected micrographs.
 3. Note the project ID, workspace ID, and job ID of your Curate Exposures job.
 
-### In Python: ###
+### Python ###
 
 4. Find the optimal mask pre-processing and postprocessing parameters for your data by importing a test micrograph using the [`find_vesicles.ipynb`](tests/find_vesicles.ipynb) Jupyter notebook. We note in our paper that a combination of roundness and area postprocessing filters are sufficient to obtain high precision and recall in the task of finding synaptic vesicles. If these are sufficient for your dataset as well, then the parameters that need to be set by the user are as follows.
    
@@ -92,13 +92,18 @@ There are a variety of other postprocessing filters that can be applied to your 
  
 8. Generate particle picks by modifying the [`generate_picks.ini`](parameters/generate_picks.ini) parameter file. Set the workspace into which the vesicle picks will be exported. Set the dilation or erosion radius if desired, and set box size parameter to control the density of picks. We recommend picking with a high density and removing duplicate particles later in CryoSPARC. **Ensure to set the input directory for this script as the output directory of `filter_vesicles.py`.**
 
-   	Run [`filter_vesicles.py`](filter_vesicles.py):
+   	Run [`generate_picks.py`](generate_picks.py):
    
 	```
 	python generate_picks.py parameters/generate_picks.ini
  	```
- 
-### In CryoSPARC: ###
 
-8. 
+	Once this script has finished executing, you should see a collection of `.pkl` files in the output directory of this script, as well as a new, completed job in CryoSPARC called **Vesicle Picks**. This job will be used for downstream processing in CryoSPARC.
+
+### CryoSPARC (Part 2) ###
+
+9. [Extract](https://guide.cryosparc.com/processing-data/all-job-types-in-cryosparc/extraction/job-extract-from-micrographs) particles from the micrographs that were used as input to `find_vesicles.py`. We recommend extracting with a box size 2x to 3x larger than the box size used to generate picks.
+
+10. Proceed with downstream analysis in CryoSPARC, such as [2D classification](https://guide.cryosparc.com/processing-data/all-job-types-in-cryosparc/particle-curation/job-2d-classification) and [*Ab initio* reconstruction](https://guide.cryosparc.com/processing-data/all-job-types-in-cryosparc/3d-reconstruction/job-ab-initio-reconstruction).
+
 ## Reference ##
