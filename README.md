@@ -65,9 +65,11 @@ To process your own dataset, follow the steps below:
 
 ### In Vesicle Picker: ###
 
-4. Find the optimal mask pre-processing and postprocessing for your data by importing a test micrograph using the [`find_vesicles.ipynb`](tests/find_vesicles.ipynb) Jupyter notebook. The parameters that need to be set by the user are as follows:
-	- $\sigma_{space}$, $\sigma_{colour}$, and $d$ for the bilateral filter
-	-
-6.  
+4. Find the optimal mask pre-processing and postprocessing parameters for your data by importing a test micrograph using the [`find_vesicles.ipynb`](tests/find_vesicles.ipynb) Jupyter notebook. We note in our paper that a combination of roundness and area postprocessing filters are sufficient to obtain high precision and recall in the task of finding synaptic vesicles. If these are sufficient for your dataset as well, then the parameters that need to be set by the user are as follows. 
+	- $\sigma_{space}$, $\sigma_{colour}$, and $d$ for the bilateral filter.
+	- $roundness_{min}$ for the roundness filter.
+	- $Area_{min}$ and $Area{max}$ for the area filter.
+
+5.  
 
 ## Reference ##
