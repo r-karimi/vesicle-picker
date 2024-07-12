@@ -2,7 +2,7 @@
 
 ## Installation ##
 
-1. Ensure [Git](https://github.com/git-guides/install-git) and [Anaconda](https://www.anaconda.com/download) or ([Miniconda](https://docs.anaconda.com/miniconda/)) are installed on your machine.  
+1. Ensure [Git](https://github.com/git-guides/install-git) and [Anaconda](https://www.anaconda.com/download) (or [Miniconda](https://docs.anaconda.com/miniconda/)) are installed on your machine.  
 2. If you wish to run the Segment Anything model on GPU, ensure [CUDA](https://docs.nvidia.com/cuda/) is installed on your machine. CUDA is not necessary if you wish to only run Segment Anything on your machine's CPU. 
 3. Clone this repository:  
 	```
