@@ -21,7 +21,7 @@
 6. Edit the [`pyproject.toml`](pyproject.toml) file in the base directory to install the correction version of PyTorch, PyTorch vision, and PyTorch audio for your machine. These instructions differ based on whether you are installing PyTorch for CPU or GPU usage.
 
 	### CPU Installation ###
-	- Visit the [PyTorch](https://pytorch.org/get-started/locally/) installation page and select the appropriate options, ensuring that Pip is selected as the package manager and CPU is selected as the compute platform. Note the given install command.
+	- Visit the [PyTorch](https://pytorch.org/get-started/locally/) installation page and select the appropriate options, ensuring that Pip is selected as the package manager and CPU is selected as the compute platform. Note the given install command, but do not run it.
  
 	- Modify `install-pytorch` in `pyproject.toml` with the install command noted above:
 		```
