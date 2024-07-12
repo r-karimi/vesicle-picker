@@ -108,6 +108,14 @@ To process your own dataset, follow the steps below:
 
 10. Proceed with downstream analysis in CryoSPARC, such as [2D classification](https://guide.cryosparc.com/processing-data/all-job-types-in-cryosparc/particle-curation/job-2d-classification) and [*Ab initio* reconstruction](https://guide.cryosparc.com/processing-data/all-job-types-in-cryosparc/3d-reconstruction/job-ab-initio-reconstruction).
 
+## Tips ##
+
+- We recommend experimenting with different model architectures and downsampling factors to find a good trade-off between accuracy and speed when processing a full dataset. We have found that good recall when finding vesicles is usually unncessary for obtaining a structure. A small set of high-quality vesicles are usually more informative than many vesicles mixed in with junk.
+
+- If you're able to generate good 2D classes of a membrane protein complex with Vesicle Picker, these particles can be used for template matching and training a Topaz model to obtain a larger and more well-centered particle stack for subsequent 3D reconstruction and refinement.
+
+- When performing 2D classification, particularly when searching for small membrane proteins and protein complexes, we found that it is important to
+
 ## Reference ##
 
 A citation will be added shortly for a preprint on BioRxiv.
