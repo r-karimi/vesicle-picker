@@ -63,7 +63,7 @@ To process your own dataset, follow the steps below:
 2. [Curate](https://guide.cryosparc.com/processing-data/all-job-types-in-cryosparc/exposure-curation/interactive-job-manually-curate-exposures) your motion-corrected micrographs.
 3. Note the project ID, workspace ID, and job ID of your Curate Exposures job.
 
-### In Vesicle Picker: ###
+### In Python: ###
 
 4. Find the optimal mask pre-processing and postprocessing parameters for your data by importing a test micrograph using the [`find_vesicles.ipynb`](tests/find_vesicles.ipynb) Jupyter notebook. We note in our paper that a combination of roundness and area postprocessing filters are sufficient to obtain high precision and recall in the task of finding synaptic vesicles. If these are sufficient for your dataset as well, then the parameters that need to be set by the user are as follows.
    
@@ -73,6 +73,12 @@ To process your own dataset, follow the steps below:
 
 There are a variety of other postprocessing filters that can be applied to your data as well. These filters are commented out in [`parameters/filter_vesicles.ini`](parameters/filter_vesicles.ini) by default. More information about the various postprocessing methods implemented in this library can be found in [`vesicle_picker/postprocessing.py`](vesicle_picker/postprocessing.py).
 
-5.  
+5. Find vesicles by modifying the [`find_vesicles.ini`](parameters/find_vesicles.ini) parameter file with your desired parameters, ensuring to fill in the correct CryoSPARC information. Also make sure to fill in your CryoSPARC login information, using [`csparc_login.ini`](csparc_login.ini) as a template. Finally, indicate an appropriate output directory for the detected vesicles. These will be stored in Python `.pkl` files.
+
+When you're ready, run the [`find_vesicles.py'](find_vesicles.py) script. The script takes a file path to the parameters file as its only argument:
+
+	```
+	python find_vesicles.py parameters/find_vesicles.ini
+ 	```
 
 ## Reference ##
