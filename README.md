@@ -71,7 +71,7 @@ To process your own dataset, follow the steps below:
    
 	- $\sigma_{space}$, $\sigma_{colour}$, and $d$ for the bilateral filter.
 	- $roundness_{min}$ for the roundness filter.
-	- $Area_{min}$ and $Area_{max}$ for the area filter.
+	- $area_{min}$ and $area_{max}$ for the area filter.
  	- $r_{dilation}$ or $r_{erosion}$ for particle picks offset from the membrane edge.
 	- Box size to control the density of the picks.	 
 
