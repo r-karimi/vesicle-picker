@@ -120,4 +120,5 @@ To process your own dataset, follow the steps below:
 
 ## Reference ##
 
-A citation will be added shortly for a preprint on BioRxiv.
+Karimi, R., Coupland, C. E. & Rubinstein, J. L. Vesicle Picker: A tool for efficient identification of membrane protein complexes in vesicles. *bioRxiv* 2024.07.15.603622 (2024) doi:10.1101/2024.07.15.603622.
+
