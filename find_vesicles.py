@@ -58,7 +58,7 @@ for micrograph in tqdm(micrographs[:]):
     # can be adjusted for Gaussian if desired.
     preprocessed_micrograph = preprocess.preprocess_micrograph(
         image_fullres,
-        downsample_factor=parameters.getint('general', 'downsample'),
+        downsample=parameters.getint('general', 'downsample'),
         lowpass_mode=parameters.get('preprocessing', 'lowpass_mode'),
         d=parameters.getint('preprocessing', 'd'),
         sigmaColor=parameters.getint('preprocessing', 'sigmaColor'),
