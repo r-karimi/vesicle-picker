@@ -30,7 +30,7 @@ micrographs = external_import.micrographs_from_csparc(
 )
 
 # Loop over all micrographs in the job directory
-for micrograph in tqdm(micrographs[0:12]):
+for micrograph in tqdm(micrographs[:]):
 
     # Extract the micrograph UID
     uid = micrograph['uid']
