@@ -156,7 +156,7 @@ cython_debug/
 *.pth
 
 # Personal cryosparc login
-my_csparc_login.ini
-
+my_csparc_login*.ini
 # Mac stuff
 .DS_Store
+
