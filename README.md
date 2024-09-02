@@ -118,6 +118,8 @@ To process your own dataset, follow the steps below:
 
 - We typically iterate 2D classification and selection of promising 2D classes several times. In early iterations, we enable the `Force Max over poses/shifts` parameter to efficiently classify large numbers of particles. In later iterations, where images of proteins in membranes are enriched, we typical disable the `Force Max over poses/shifts` parameter to better resolve low SNR particles within membranes.
 
+- Sometimes, a user will already have a high quality particle stack and is interested in filtering an existing stack by selecting particles on vesicles found by vesicle picker. If this is the case, we recommend exporting a set of dense (i.e. picked with a small box size) vesicle picks to CryoSPARC and using the `Remove Duplicates` job, to intersect the two existing particle stacks. See this job's [CryoSPARC documentation](https://guide.cryosparc.com/processing-data/all-job-types-in-cryosparc/utilities/job-remove-duplicate-particles) for more details.
+
 ## Troubleshooting ##
 
 | Failure Mode      | Suggestion      |
