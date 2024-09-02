@@ -118,6 +118,13 @@ To process your own dataset, follow the steps below:
 
 - We typically iterate 2D classification and selection of promising 2D classes several times. In early iterations, we enable the `Force Max over poses/shifts` parameter to efficiently classify large numbers of particles. In later iterations, where images of proteins in membranes are enriched, we typical disable the `Force Max over poses/shifts` parameter to better resolve low SNR particles within membranes.
 
+## Troubleshooting ##
+
+| Failure Mode      | Suggestion      |
+| ------------- | ------------- |
+| Model is not detecting vesicles | Cell 2, Row 1 |
+| Cell 1, Row 2 | Cell 1, Row 2 |
+
 ## Reference ##
 
 Karimi, R., Coupland, C. E. & Rubinstein, J. L. Vesicle Picker: A tool for efficient identification of membrane protein complexes in vesicles. *bioRxiv* 2024.07.15.603622 (2024) doi:10.1101/2024.07.15.603622.
