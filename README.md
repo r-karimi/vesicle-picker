@@ -122,8 +122,8 @@ To process your own dataset, follow the steps below:
 
 | Failure Mode      | Suggestion      |
 | ------------- | ------------- |
-| Model is not detecting vesicles. | Increase the filter diameter and \sigma_{c} and \sigma_{s} parameters. |
-| Model detects vesicles and annotates patches in the background of the image. | Decrease the filter diameter and \sigma_{c} and \sigma_{s} parameters. |
+| Model is not detecting vesicles. | Increase the filter diameter and $\sigma_{c}$ and $\sigma_{s}$ parameters. |
+| Model detects vesicles and annotates patches in the background of the image. | Decrease the filter diameter and $\sigma_{c}$ and $\sigma_{s}$ parameters. |
 | Model cannot discriminate between vesicles and contaminants. | Experiment with the available filters. If vesicles are larger than contaminants on average, increase the minimum area filter. If contaminants are irregularly shaped, increase the minimum roundness filter. |
 
 ## Reference ##
