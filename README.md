@@ -118,6 +118,16 @@ To process your own dataset, follow the steps below:
 
 - We typically iterate 2D classification and selection of promising 2D classes several times. In early iterations, we enable the `Force Max over poses/shifts` parameter to efficiently classify large numbers of particles. In later iterations, where images of proteins in membranes are enriched, we typical disable the `Force Max over poses/shifts` parameter to better resolve low SNR particles within membranes.
 
+- Sometimes, a user will already have a high quality particle stack and is interested in filtering an existing stack by selecting particles on vesicles found by vesicle picker. If this is the case, we recommend exporting a set of dense (i.e. picked with a small box size) vesicle picks to CryoSPARC and using the `Remove Duplicates` job, to intersect the two existing particle stacks. See this job's [CryoSPARC documentation](https://guide.cryosparc.com/processing-data/all-job-types-in-cryosparc/utilities/job-remove-duplicate-particles) for more details.
+
+## Troubleshooting ##
+
+| Failure Mode      | Suggestion      |
+| ------------- | ------------- |
+| Model is not detecting vesicles. | Increase the filter diameter and $\sigma_{c}$ and $\sigma_{s}$ parameters. |
+| Model detects vesicles and annotates patches in the background of the image. | Decrease the filter diameter and $\sigma_{c}$ and $\sigma_{s}$ parameters. |
+| Model cannot discriminate between vesicles and contaminants. | Experiment with the available filters. If vesicles are larger than contaminants on average, increase the minimum area filter. If contaminants are irregularly shaped, increase the minimum roundness filter. |
+
 ## Reference ##
 
 Karimi, R., Coupland, C. E. & Rubinstein, J. L. Vesicle Picker: A tool for efficient identification of membrane protein complexes in vesicles. *bioRxiv* 2024.07.15.603622 (2024) doi:10.1101/2024.07.15.603622.
