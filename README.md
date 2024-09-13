@@ -63,7 +63,7 @@ Before processing your own dataset, we recommend working through the introductor
  	- $r_{dilation}$ or $r_{erosion}$ for particle picks offset from the membrane edge. This parameter can be useful if the user has prior knowledge about the position of proteins of interest relative to the lipid bilayer.
 	- Box size to control the density of the picks. A higher density of picks can lead to an increased likelihood of identifing a protein of interest because one of the picks is more likely to be well-centered on the protein. However, this can come at the cost of increased computational burden as the number of particle images subjected to 2D classification is increased.
 
-	There are a variety of other postprocessing filters that can be applied to your data as well. These filters are commented out in [`parameters/filter_vesicles.ini`](parameters/filter_vesicles.ini) by default, but can be uncommented and applied depending on the specific use case of the user. More information about the various postprocessing methods implemented in this library can be found in [`vesicle_picker/postprocessing.py`](vesicle_picker/postprocessing.py).
+There are a variety of other postprocessing filters that can be applied to your data as well. These filters are commented out in [`parameters/filter_vesicles.ini`](parameters/filter_vesicles.ini) by default, but can be uncommented and applied depending on the specific use case of the user. More information about the various postprocessing methods implemented in this library can be found in [`vesicle_picker/postprocessing.py`](vesicle_picker/postprocessing.py).
 
 To process your own full dataset with the command line scripts, follow the steps below:
 
