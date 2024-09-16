@@ -377,15 +377,17 @@ def generate_picks(masks, psize, downsample, box_size, mode='edge'):
 
     # Convert the given box size in Angstrom
     # to the closest compatible box size in pixels.
-    box_size = box_size/(psize*downsample)
+    box_size = int(np.round(box_size/(psize*downsample)))
 
-    # Factor the dimensions of the (square) image
-    # and find the closest to box_size.
-    factors = helpers.factors(pick_mask.shape[0])
-    box_size = factors[np.argmin((factors - box_size) ** 2)]
+    # Zero pad the image
+    h_org = pick_mask.shape[0]
+    w_org = pick_mask.shape[1]
+    h_pad = int(np.ceil(h_org/box_size)*box_size - h_org)
+    w_pad = int(np.ceil(w_org/box_size)*box_size - w_org)
+    pick_mask_pad = np.pad(pick_mask, ((0,h_pad),(0,w_pad)), "constant")
 
     # Split the micrograph into evenly spaced grids assuming square micrograph
-    split_pick_mask = helpers.blockshaped(pick_mask, box_size, box_size)
+    split_pick_mask = helpers.blockshaped(pick_mask_pad, box_size, box_size)
 
     # In each patch, if the sum of the mask is greater
     # than zero (i.e. if there is an edge)
@@ -402,11 +404,14 @@ def generate_picks(masks, psize, downsample, box_size, mode='edge'):
             split_pick_mask[i, :, :] = this_patch
 
     # Undo the split
-    merged_pick_mask = helpers.unblockshaped(
+    merged_pick_mask_pad = helpers.unblockshaped(
         split_pick_mask,
-        pick_mask.shape[0],
-        pick_mask.shape[1]
+        pick_mask_pad.shape[0],
+        pick_mask_pad.shape[1]
     )
+
+    # Undo the pad
+    merged_pick_mask = merged_pick_mask_pad[0:h_org, 0:w_org]
 
     # Generate the pick indices
     pick_indices = np.where(merged_pick_mask == 1)
