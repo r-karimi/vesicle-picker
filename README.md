@@ -2,9 +2,9 @@
 
 ## Installation ##
 
-1. Ensure [Git](https://github.com/git-guides/install-git) and [Anaconda](https://www.anaconda.com/download) (or [Miniconda](https://docs.anaconda.com/miniconda/)) are installed on your machine.  
-2. If you wish to run the Segment Anything model on GPU, ensure [CUDA](https://docs.nvidia.com/cuda/) is installed on your machine. CUDA is not necessary if you wish to only run Segment Anything on your machine's CPU. 
-3. Clone this repository:  
+1. Ensure [Git](https://github.com/git-guides/install-git) and [Anaconda](https://www.anaconda.com/download) (or [Miniconda](https://docs.anaconda.com/miniconda/)) are installed on your computer.  
+2. If you wish to run the Segment Anything model on GPU, ensure [CUDA](https://docs.nvidia.com/cuda/) is installed on your machine. CUDA is not necessary to run Segment Anything on your computer's CPU, but the program will run much slower. 
+3. Clone the Vesicle Picker repository:  
 	```
 	git clone https://github.com/r-karimi/vesicle-picker.git
 	```
@@ -18,7 +18,7 @@
  	conda activate vesicle-picker
  	conda install pip
  	```
-6. Edit the [`pyproject.toml`](pyproject.toml) file in the base directory to install the correction version of PyTorch, PyTorch vision, and PyTorch audio for your machine. These instructions differ based on whether you are installing PyTorch for CPU or GPU usage.
+6. Edit the [`pyproject.toml`](pyproject.toml) file in the base directory to install the correction version of PyTorch, PyTorch vision, and PyTorch audio for your computer. These instructions differ based on whether you are installing PyTorch for CPU or GPU usage.
 
 	### CPU Installation ###
 	- Visit the [PyTorch](https://pytorch.org/get-started/locally/) installation page and select the appropriate options, ensuring that Pip is selected as the package manager and CPU is selected as the compute platform. Note the given install command, but do not run it.
@@ -48,43 +48,43 @@
 	pip install .
 	poe install-pytorch
  	```
-9. Download the Segment Anything [model weights](https://github.com/facebookresearch/segment-anything#model-checkpoints) and place them in the `vesicle-picker` repository. We recommend trying with the ViT-L model weights first.
-10. Modify csparc_login.ini to match your active CryoSPARC instance from which micrographs will be imported into Vesicle Picker and into which particle locations will be exported.
+9. Download the Segment Anything [model weights](https://github.com/facebookresearch/segment-anything#model-checkpoints) from the Segment Anything GitHub page and place them in the `vesicle-picker` repository. We recommend trying with the ViT-L model weights first.
+10. Modify csparc_login.ini to match the active cryoSPARC instance from which micrographs will be imported into Vesicle Picker and into which particle locations will be exported.
 
 ## Usage ##
 
-Before processing your own dataset, we recommend working through the introductory Jupyter notebook [`find_vesicles.ipynb`](tests/find_vesicles.ipynb). This notebook describes how the program imports data residing in CryoSPARC and describes each step of the processing pipeline.
+Vesicle Picker is broadly subdivided into three sub-programs, each of which can be run from a seperate script. These sub-programs are `find_vesicles.py`, `filter_vesicles.py`, and `generate_picks.py`. The scripts can be run from the command line and take one argument, which is the path of the respective parameter file for a script. This parameter file is where one can set all the necessary parameters to execute a sub-program. For instance, the parameters for `filter_vesicles` sub-program consist of general parameters such as pixel size and cryoSPARC instance information, as well as specific parameters such as the minimum area or roundness for a predicted vesicle area to be selected for subsequent analysis.
 
-To process your own dataset, follow the steps below:
-
-### CryoSPARC (Part 1) ###
-
-1. [Import](https://guide.cryosparc.com/processing-data/all-job-types-in-cryosparc/import/job-import-movies) your movies, then perform [patch motion correction](https://guide.cryosparc.com/processing-data/all-job-types-in-cryosparc/motion-correction/job-patch-motion-correction) and [patch CTF estimation](https://guide.cryosparc.com/processing-data/all-job-types-in-cryosparc/ctf-estimation/job-patch-ctf-estimation).
+Before processing your own dataset, we recommend working through the introductory Jupyter notebook [`find_vesicles.ipynb`](tests/find_vesicles.ipynb). This notebook describes how the program imports data residing in cryoSPARC and describes each step of the processing pipeline. It also allows for empirical fine-tuning of the various parameters mentioned above on a test image from a dataset. We note in our paper that a combination of roundness and area postprocessing filters are sufficient to obtain high precision and recall in the task of finding synaptic vesicles. If these are sufficient for your dataset as well, then the parameters that need to be set by the user are as follows.
    
-2. [Curate](https://guide.cryosparc.com/processing-data/all-job-types-in-cryosparc/exposure-curation/interactive-job-manually-curate-exposures) your motion corrected micrographs.
+- $\sigma_{space}$, $\sigma_{colour}$, and $d$ for the bilateral filter. Increasing these parameters blurs the image such that Vesicle Picker can operate at higher recall at the expense of precision.
+- $Roundness_{min}$ for the roundness filter. The roundness ranges from 0 (i.e. the object is a line) to 1 (i.e. the object is a perfect circle) for every predicted vesicle.
+- $Area_{min}$ and $Area_{max}$ for the area filter. This parameter is useful if a user knows the rough size of the vesicles in advance.
+- $r_{dilation}$ or $r_{erosion}$ for particle picks offset from the membrane edge. This parameter can be useful if the user has prior knowledge about the position of proteins of interest relative to the lipid bilayer.
+- Box size to control the density of the picks. A higher density of picks can lead to an increased likelihood of identifing a protein of interest because one of the picks is more likely to be well-centered on the protein. However, this can come at the cost of increased computational burden as the number of particle images subjected to 2D classification is increased.
+
+There are a variety of other postprocessing filters that can be applied to your data as well. These filters are commented out in [`parameters/filter_vesicles.ini`](parameters/filter_vesicles.ini) by default, but can be uncommented and applied depending on the specific use case of the user. More information about the various postprocessing methods implemented in this library can be found in [`vesicle_picker/postprocessing.py`](vesicle_picker/postprocessing.py).
+
+To process your own full dataset with the command line scripts, follow the steps below:
+
+### cryoSPARC (Part 1) ###
+
+1. [Import](https://guide.cryosparc.com/processing-data/all-job-types-in-cryosparc/import/job-import-movies) your movies, then perform [patch motion correction](https://guide.cryosparc.com/processing-data/all-job-types-in-cryosparc/motion-correction/job-patch-motion-correction) and [patch CTF estimation](https://guide.cryosparc.com/processing-data/all-job-types-in-cryosparc/ctf-estimation/job-patch-ctf-estimation). Vesicle Picker operates on motion corrected micrographs.
    
-3. Note the project ID, workspace ID, and job ID of your Curate Exposures job.
+2. [Curate](https://guide.cryosparc.com/processing-data/all-job-types-in-cryosparc/exposure-curation/interactive-job-manually-curate-exposures) your motion corrected micrographs to discard any micrographs that, for instance, contain no vesicles. Vesicle Picker is designed to operate on the output of a Curate Exposures job.
+   
+3. Note the project ID, workspace ID, and job ID of your Curate Exposures job. You will input this information into the parameter files to run the sub-programs referenced below.
 
 ### Python ###
 
-4. Find the optimal mask pre-processing and postprocessing parameters for your data by importing a test micrograph using the [`find_vesicles.ipynb`](tests/find_vesicles.ipynb) Jupyter notebook. We note in our paper that a combination of roundness and area postprocessing filters are sufficient to obtain high precision and recall in the task of finding synaptic vesicles. If these are sufficient for your dataset as well, then the parameters that need to be set by the user are as follows.
-   
-	- $\sigma_{space}$, $\sigma_{colour}$, and $d$ for the bilateral filter.
-	- $roundness_{min}$ for the roundness filter.
-	- $area_{min}$ and $area_{max}$ for the area filter.
- 	- $r_{dilation}$ or $r_{erosion}$ for particle picks offset from the membrane edge.
-	- Box size to control the density of the picks.	 
-
-	There are a variety of other postprocessing filters that can be applied to your data as well. These filters are commented out in [`parameters/filter_vesicles.ini`](parameters/filter_vesicles.ini) by default. More information about the various postprocessing methods implemented in this library can be found in [`vesicle_picker/postprocessing.py`](vesicle_picker/postprocessing.py).
-
-5. Find vesicles by modifying the [`find_vesicles.ini`](parameters/find_vesicles.ini) parameter file with your desired parameters, ensuring to fill in the correct CryoSPARC information. Also make sure to fill in your CryoSPARC login information, using [`csparc_login.ini`](csparc_login.ini) as a template. Finally, indicate an appropriate output directory for the detected vesicles. These will be stored in Python `.pkl` files. We have pre-filled this parameter file with a reasonable set of starting parameters.
+4. Find vesicles by modifying the [`find_vesicles.ini`](parameters/find_vesicles.ini) parameter file with your desired parameters, ensuring you fill in the correct cryoSPARC information. Also make sure to fill in your cryoSPARC login information, using [`csparc_login.ini`](csparc_login.ini) as a template. Finally, indicate an appropriate output directory for the detected vesicles. The detected vesicles will be stored as Python `.pkl` files in the output directory. We have pre-filled this parameter file with a reasonable set of starting parameters.
 
 	When you're ready, run the [`find_vesicles.py`](find_vesicles.py) script. The script takes a file path to the parameters file as its only argument:
 	
  	```
 	python find_vesicles.py parameters/find_vesicles.ini
  	```
-7. Filter the found vesicles by modifying the [`filter_vesicles.ini`](parameters/filter_vesicles.ini) parameter file, uncommenting the types of filters that you want to use and setting their minimum and maximum values. **Ensure to set the input directory for this script as the output directory of `find_vesicles.py`.** Again, we have pre-filled this parameter file with a reasonable set of starting parameters.
+5. Filter the found vesicles by modifying the [`filter_vesicles.ini`](parameters/filter_vesicles.ini) parameter file, uncommenting the selection filters that you want to use and setting their minimum and maximum values. **Ensure you set the input directory for this script as the output directory of `find_vesicles.py`.** Again, we have pre-filled this parameter file with a reasonable set of starting parameters.
    
    	When you're ready, run [`filter_vesicles.py`](filter_vesicles.py):
    
@@ -92,7 +92,7 @@ To process your own dataset, follow the steps below:
 	python filter_vesicles.py parameters/filter_vesicles.ini
 	```
  
-8. Generate particle picks by modifying the [`generate_picks.ini`](parameters/generate_picks.ini) parameter file. Set the workspace into which the vesicle picks will be exported. Set the dilation or erosion radius if desired, and set box size parameter to control the density of picks. We recommend picking with a high density and removing duplicate particles later in CryoSPARC. **Ensure to set the input directory for this script as the output directory of `filter_vesicles.py`.**
+6. Generate particle picks by modifying the [`generate_picks.ini`](parameters/generate_picks.ini) parameter file. Set the workspace into which the vesicle picks will be exported. Set the dilation or erosion radius if desired, and set box size parameter to control the density of picks. We recommend picking with a reasonably high density (i.e. a box size less than half of the expected diameter of your protein of interest) and removing duplicate particles later in cryoSPARC. **Ensure you set the input directory for this script as the output directory of `filter_vesicles.py`.**
 
    	Run [`generate_picks.py`](generate_picks.py):
    
@@ -100,23 +100,33 @@ To process your own dataset, follow the steps below:
 	python generate_picks.py parameters/generate_picks.ini
  	```
 
-	Once this script has finished executing, you should see a collection of `.pkl` files in the output directory of this script, as well as a new, completed job in CryoSPARC called **Vesicle Picks**. This job will be used for downstream processing in CryoSPARC.
+	Once this script has finished, you should see a collection of `.pkl` files in the output directory of this script, as well as a new, completed job in cryoSPARC called **Vesicle Picks**. This job will be used for downstream processing in cryoSPARC.
 
 ### CryoSPARC (Part 2) ###
 
-9. [Extract](https://guide.cryosparc.com/processing-data/all-job-types-in-cryosparc/extraction/job-extract-from-micrographs) particles from the micrographs that were used as input to `find_vesicles.py`. We recommend extracting with a box size 2x to 3x larger than the box size used to generate picks.
+7. [Extract](https://guide.cryosparc.com/processing-data/all-job-types-in-cryosparc/extraction/job-extract-from-micrographs) particles from the micrographs that were used as input to `find_vesicles.py`. We recommend extracting with a box size 2x to 3x larger than the box size used to generate picks.
 
-10. Proceed with downstream analysis in CryoSPARC, such as [2D classification](https://guide.cryosparc.com/processing-data/all-job-types-in-cryosparc/particle-curation/job-2d-classification) and [*Ab initio* reconstruction](https://guide.cryosparc.com/processing-data/all-job-types-in-cryosparc/3d-reconstruction/job-ab-initio-reconstruction).
+8. Proceed with downstream analysis in cryoSPARC, such as [2D classification](https://guide.cryosparc.com/processing-data/all-job-types-in-cryosparc/particle-curation/job-2d-classification) and [*Ab initio* reconstruction](https://guide.cryosparc.com/processing-data/all-job-types-in-cryosparc/3d-reconstruction/job-ab-initio-reconstruction).
 
 ## Tips ##
 
-- We recommend experimenting with different model architectures and downsampling factors to find a good trade-off between accuracy and speed when processing a full dataset. We have found that perfect recall when finding vesicles is usually unnecessary for obtaining a structure. A small set of high-quality vesicles are usually more informative than vesicles mixed in with junk, so don't be afraid of stringently filtering your vesicles.
+- We recommend experimenting with different model architectures and downsampling factors to find a good trade-off between accuracy and speed when processing a full dataset. We have found that perfect recall when finding vesicles is usually unnecessary for obtaining a structure. A small set of high-quality vesicles are usually more informative than vesicles mixed with non-vesicle objects, so do not be afraid of stringently filtering your vesicles.
 
-- If you're able to generate good 2D classes of a membrane protein complex with Vesicle Picker, these particles can be used for template matching and training a Topaz model to obtain a larger and more well-centered particle stack for subsequent 3D reconstruction and refinement.
+- If you are able to generate good 2D classes of a membrane protein complex with Vesicle Picker, these particles can be used for template matching and training a Topaz model to obtain a larger and better centered particle stack for subsequent 3D reconstruction and refinement.
 
 - When performing 2D classification, particularly when searching for small membrane proteins and protein complexes, we found that it is important to perform at least 40 iterations of expectation-maximization. We also typically increase the batchsize per class to 150 or 200. Finally, we almost always see better results when we disable the `Recenter 2D classes` parameter.
 
 - We typically iterate 2D classification and selection of promising 2D classes several times. In early iterations, we enable the `Force Max over poses/shifts` parameter to efficiently classify large numbers of particles. In later iterations, where images of proteins in membranes are enriched, we typical disable the `Force Max over poses/shifts` parameter to better resolve low SNR particles within membranes.
+
+- Sometimes, a user will already have a high quality particle stack and is interested in filtering an existing stack by selecting particles on vesicles found by vesicle picker. If this is the case, we recommend exporting a set of dense (i.e. picked with a small box size) vesicle picks to cryoSPARC and using the `Remove Duplicates` job, to intersect the two existing particle stacks. See this job's [cryoSPARC documentation](https://guide.cryosparc.com/processing-data/all-job-types-in-cryosparc/utilities/job-remove-duplicate-particles) for more details.
+
+## Troubleshooting ##
+
+| Failure Mode      | Suggestion      |
+| ------------- | ------------- |
+| Model is not detecting vesicles. | Increase the filter diameter and $\sigma_{c}$ and $\sigma_{s}$ parameters. |
+| Model detects vesicles and annotates patches in the background of the image. | Decrease the filter diameter and $\sigma_{c}$ and $\sigma_{s}$ parameters. |
+| Model cannot discriminate between vesicles and contaminants. | Experiment with the available filters. If vesicles are larger than contaminants on average, increase the minimum area filter. If contaminants are irregularly shaped, increase the minimum roundness filter. |
 
 ## Reference ##
 

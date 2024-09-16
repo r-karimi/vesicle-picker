@@ -156,7 +156,10 @@ cython_debug/
 *.pth
 
 # Personal cryosparc login
-my_csparc_login.ini
-
+my_csparc_login*.ini
 # Mac stuff
 .DS_Store
+
+# Datasets
+EMPIAR-10426
+EMPIAR-11637
