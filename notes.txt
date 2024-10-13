@@ -1,3 +1,0 @@
-use "compare_masks_batch" to search over sigma c
-use "fig1_plots.ipynb" to make plots for the search over sigma c
-"generate_example_micrographs.ipynb" has code to overlay vesicles on micrographs and save
