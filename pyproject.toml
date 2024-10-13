@@ -21,7 +21,7 @@ jupyter = "^1.0.0"
 primefac = "^2.0.12"
 
 [tool.poe.tasks] # Change the line below to meet your specific environment. Currently configured for CUDA 11.8
-install-pytorch = "pip install torch==2.1.1+cu118 torchvision==0.16.1+cu118 torchaudio==2.1.1+cu118 -f https://download.pytorch.org/whl/torch_stable.html"
+install-pytorch = "pip install torch==2.3.1+cu118 torchvision==0.18.1+cu118 torchaudio==2.3.1+cu118 -f https://download.pytorch.org/whl/torch_stable.html"
 
 [build-system]
 requires = ["poetry-core"]
